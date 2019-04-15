@@ -6,9 +6,9 @@ module.exports = (sequelize, dataTypes) => {
         name: { type: dataTypes.STRING(100), allowNull: false },
     })
     Category.associate = models => {
-        Category.hasMany(models.article, {
-            foreignKey: 'categoryId',
-            sourceKey: 'id'
+        Category.belongsTo(models.article, {
+            foreignKey: 'articleId',
+            targetKey: 'id'
         })
     }
     return Category

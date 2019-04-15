@@ -5,6 +5,7 @@ module.exports = (sequelize, dataTypes) => {
         id: { type: dataTypes.INTEGER(11), primaryKey: true, autoIncrement: true },
         title: { type: dataTypes.STRING(255), allowNull: false },
         content: { type: dataTypes.TEXT },
+        userid: { type: dataTypes.INTEGER(11) },
         createdAt: {
             type: dataTypes.DATE,
             defaultValue: dataTypes.NOW,
@@ -24,7 +25,7 @@ module.exports = (sequelize, dataTypes) => {
     })
     Article.associate = models => {
         Article.hasMany(models.tag)
-
+        Article.hasMany(models.category)
         Article.hasMany(models.comment)
         Article.hasMany(models.reply)
     }
