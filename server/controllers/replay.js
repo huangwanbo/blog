@@ -30,5 +30,18 @@ module.exports = {
             where: query
         })
         response = { code: '200', ...data }
+        ctx.body = response
+    },
+    async delete(ctx) {
+        let response;
+        const { commentId, replayId } = ctx.query;
+        if (relayId) {
+            await replayModel.destroy({ where: { id: replayId } })
+            response = { code: '200', message: '成功删除该回复' }
+        } else {
+            response = { code: '0', message: 'id不能为空' }
+        }
+        ctx.body = response
+
     }
 }

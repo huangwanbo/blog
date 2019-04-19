@@ -131,5 +131,48 @@ module.exports = {
                 ctx.body = { code: '0', message: '文章id不能为空' };
             }
         }
+    },
+    async getArticlesByCate(ctx) {
+        let { page = 1, pageSize = 15, name } = ctx.query;
+        offset = (page - 1) * pageSize;
+
+        const data = await ArticleModel.findAndCountAll({
+            attributes: ['id', 'title', 'createdAt'],
+            include: [{ model: CategoryModel, attributes: ['name'], where: { name } }],
+            offset,
+            limit: pageSize,
+            order: [
+                ['createdAt', 'DESC']
+            ],
+            distinct: true
+        })
+        //         SELECT count(DISTINCT(`article`.`id`)) AS `count` FROM `art
+        // icle` AS `article` INNER JOIN `category` AS `categories` ON `article`.`id` = `ca
+        // tegories`.`articleId` AND `categories`.`name` = 'aa';
+        // Executing (default): SELECT `article`.*, `categories`.`id` AS `categories.id`, `
+        // categories`.`name` AS `categories.name` FROM (SELECT `article`.`id`, `article`.`
+        // title`, `article`.`createdAt` FROM `article` AS `article` WHERE ( SELECT `articl
+        // eId` FROM `category` AS `categories` WHERE (`categories`.`name` = 'aa' AND `cate
+        // gories`.`articleId` = `article`.`id`) LIMIT 1 ) IS NOT NULL ORDER BY `article`.`
+        // createdAt` DESC LIMIT 0, 15) AS `article` INNER JOIN `category` AS `categories`
+        // ON `article`.`id` = `categories`.`articleId` AND `categories`.`name` = 'aa' ORDE
+        // R BY `article`.`createdAt` DESC
+        ctx.body = { code: '200', ...data }
+    },
+    async getArticleByTag(ctx) {
+        let { page = 1, pageSize = 10, name } = ctx.query;
+        offset = (page - 1) * pageSize;
+
+        const data = await ArticleModel.findAndCountAll({
+            attributes: ['id', 'title', 'createdAt'],
+            include: [{ model: TagModel, attributes: ['name'], where: { name } }],
+            offset,
+            order: [
+                ['createdAt', 'DESC']
+            ],
+            distinct: true
+        })
+        ctx.body = { code: '200', ...data }
     }
+
 }

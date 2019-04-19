@@ -3,6 +3,8 @@ const fs = require('fs-promise')
 const UserController = require('../controllers/user')
 const ArticleController = require('../controllers/article')
 const CommentController = require('../controllers/comment')
+const CategoryController = require('../controllers/category')
+const ReplayController = require('../controllers/replay')
 // router.get('/', async ctx => {
 //     console.log('执行')
 //     ctx.response.type = 'html'
@@ -33,9 +35,17 @@ router.get('/article/getArticle', ArticleController.getAllArticle)
 router.post('/article/update', ArticleController.update)
 router.post('/article/delete', ArticleController.delete)
 router.get('/article/detail', ArticleController.getArticleDetial)
+router.get('/article/bycate', ArticleController.getArticlesByCate)
 
 
 
 router.post('/comment/create', CommentController.createComment)
 router.get('/comment/delete', CommentController.delete)
+
+router.post('/replay/create', ReplayController.createReplay)
+router.get('replay/delete', ReplayController.delete)
+router.get('replay/getReplay', ReplayController.getReplay)
+
+router.get('/category/getCate', CategoryController.getCategories)
+router.get('/category/getArticleFromCate', CategoryController.articleFromCate)
 module.exports = router
