@@ -1,0 +1,30 @@
+@import "base";
+
+@mixin flex-center($direction: row){
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: $direction;
+}
+
+@mixin flex-between(){
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+@mixin ellipsis(){
+	overflow:hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+@mixin mulitline-ellipsis($num:2){
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display:-webkit-box;
+	-webkit-line-clamp:$num;
+	-webkit-box-orient:vertical;
+	white-space: normal !important;
+	word-wrap: break-word;
+}

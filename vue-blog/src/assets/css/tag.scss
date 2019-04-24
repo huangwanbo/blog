@@ -1,0 +1,58 @@
+@import 'base';
+.danblue{
+	border:1px solid $l-blue;
+	color:$l-blue;
+	padding: 3px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.danblue:hover{
+	background: $l-blue;
+	color:#fff;
+}
+.dangreen{
+	border:1px solid $g-yellow;
+	color:$g-yellow;
+	padding: 3px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.dangreen:hover{
+	background: $g-yellow;
+	color:#fff;
+}
+.danyellow{
+	border:1px solid $basecolor;
+	color:$basecolor;
+	padding: 3px;
+	border-radius: 5px;
+	transition: background-color is linear,color is linear;
+	cursor: pointer;
+}
+.danyellow:hover{
+	background: $basecolor;
+	color:#fff;
+}
+
+.danred{
+	border:1px solid $orang-red;
+	color:$orang-red;
+	padding: 3px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.danred:hover{
+	background: $orang-red;
+	color:#fff;
+}
+.danpurple{
+	border:1px solid $l-purple;
+	color:$l-purple;
+	padding: 3px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.danpurple:hover{
+	background: $l-purple;
+	color:#fff;
+}
